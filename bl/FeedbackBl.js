@@ -34,7 +34,7 @@ const createFeedback = async(req,res,next) => {
             resUtil.successRes(res,feedbackRes,'')
         }else{
             logger.info('createFeedback failed')
-            resUtil.successRes(res,{},msg)
+            resUtil.failedRes(res,{},'')
         }
     }catch(e){
         logger.error('createFeedback '+ e.stack)

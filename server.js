@@ -14,6 +14,7 @@ const {activeEmail,refreshToken,loginByWechatId} = require("./bl/UserBl.js");
 const {queryFeedback,createFeedback} = require("./bl/FeedbackBl.js");
 const {queryJobTypeSub} = require("./bl/BaseBl.js");
 const profileBl = require("./bl/ProfileBl.js");
+const {uploadImage} = require("./bl/ImageBl.js");
 const {createProfileTpl,updateProfileTpl,queryProfileTpl} = require("./bl/ProfileTplBl.js");
 
 // URL
@@ -23,6 +24,7 @@ const createServer = () => {
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.static(path.join(__dirname, 'uploads')))
     
     //user admin api
     app.get('/api/admin/feedback',queryFeedback)
@@ -55,6 +57,8 @@ const createServer = () => {
 
     app.get('/api/private/profile',profileBl.queryUserProfile)
     app.put('/api/private/profile/:profileId',profileBl.updateProfile)
+
+    app.post('/api/private/image',uploadImage)
 
     app.get('/api/profile.pdf',getUserProfilePdf)
     app.post('/api/profileMail',checkUserToken ,sendProfileEmail)
