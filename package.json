@@ -1,0 +1,31 @@
+{
+  "name": "profile_api",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@alicloud/pop-core": "^1.7.13",
+    "axios": "^1.4.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken" : "9.0.0",
+    "ioredis": "^5.3.2",
+    "moment": "^2.29.4",
+    "mongoose": "^7.3.1",
+    "nodemailer": "^6.9.1",
+    "pg-promise": "^11.4.3",
+    "winston": "^3.8.2",
+    "winston-daily-rotate-file": "^4.7.1",
+    "wkhtmltopdf": "^0.4.0",
+    "zip-a-folder": "^1.1.5"
+  },
+  "scripts": {
+    "start": "node main.js",
+    "build": "node main.js build",
+    "test": "node main.js test",
+    "eject": "node main.js eject"
+  },
+  "devDependencies": {
+    "babel-register": "^6.26.0"
+  }
+}

@@ -1,0 +1,128 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body style="margin:0;background-color: blanchedalmond;">
+        <div style="flex:1;word-wrap: break-word;align-items: center;justify-content: center;flex-direction: column;display: flex;align-items: center;">
+            <div style="flex: 1;background-color: #005db4;width: 100%;padding-bottom: 120px;border-bottom-right-radius: 70%;border-bottom-left-radius: 70%;"></div>
+            <div style="width: 100%;display: flex;margin-top: -60px;flex:1;align-items: center;justify-content: center;flex-direction: column;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td style="padding-right: 0px;padding-left: 0px;" align="center">
+                        
+                        <img align="center" border="0" src=<%= pdfUtil.getImageFullUrl(profile.avatar) %> alt="Image" title="Image" 
+                        style="border-radius: 100%;object-fit: cover;" height="120" width="120"/>
+                        
+                      </td>
+                    </tr>
+                  </table>
+                <h2 style="text-align: center;margin: 0;font-weight: bold;"><%= profile.name %></h2>
+            </div>
+            <div style="width: 100%;display: flex;flex:1;align-items: center;justify-content: center;flex-direction: column;">
+                <p style="text-align: center;">
+                    <span> <%= profile.gender%></span> ｜ <sapn>生日: <%=  pdfUtil.formatYearMonth(profile.birth)  %></sapn> ｜ <sapn><%= opt[0].city_name %></sapn>｜ 
+                    <sapn>电话:<%= profile.phone %></sapn> ｜ <sapn>邮箱:<%= profile.email %></sapn>
+                </p>
+                <p style="text-align: center;">
+                    <span> 3年工作经验</span> ｜ <sapn>求职意向:<%= opt[0].job_type_sub_name %></sapn> ｜ 
+                    <sapn>期望薪资:<%= opt[0].salary_min %>K-<%= opt[0].salary_max %>K</sapn>
+                </p>
+            </div>
+            <div style="width:100%;flex:1;display: flex;flex-direction: column;justify-content: center;align-items: center;">
+                <div style="margin-left: 40px;margin-right: 40px;margin-top: 20px;">
+                    <p style="font-size:24px;text-align: left;letter-spacing: 2px;margin:0;font-weight: bold;">
+                        <span style="background-color:#005db4;color:#fff; padding: 3px 16px;">个人优势</span>
+                    </p>
+                    <div style="width:100% !important;border-bottom: 2px solid #005db4;"></div>
+                    <p style="white-space: pre-line;line-height: 1.5;margin-top:-3px;width:100% !important;" align="left">
+                        <%= profile.excellent %>
+                    </p>
+                </p> 
+            </div>
+            <div style="width:100%;flex:1;display: flex;flex-direction: column;justify-content: center;align-items: center;">
+                <div style="margin-left: 40px;margin-right: 40px;margin-top: 20px;">
+                    <p style="font-size:24px;text-align: left;letter-spacing: 2px;margin:0;font-weight: bold;">
+                        <span style="background-color:#005db4;color:#fff; padding: 3px 16px;">工作经历</span>
+                    </p>
+                    <div style="width:100% !important;border-bottom: 2px solid #005db4;"></div>
+                    <% for (let index in work) { %>
+                        <div style="width:100% !important;margin-top: 8px;">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td style="padding-right: 0px;padding-left: 0px;" align="left">
+                                        <span style="font-size: 18px;font-weight: bold;"><%= work[index].en_name %></span>
+                                        <span style="margin-left: 20px;"><%= work[index].title %></span>
+                                    </td>
+                                    <td style="padding-right: 0px;padding-left: 0px;" align="right">
+                                        <p style="margin-left: 20px;"><%= pdfUtil.formatYearMonth(work[index].work_start) %> - <%= pdfUtil.formatYearMonth(work[index].work_end) %></p>
+                                    </td>
+                                </tr>
+                            </table>
+                            <p style="white-space: pre-line;line-height: 1.5;margin-top:-10px;width:100% !important;" align="left">
+                                <%= work[index].remark %>
+                            </p>
+                        </div>
+                    <% } %>
+                    
+                    
+                </p> 
+            </div>
+            
+            <div style="width:100%;flex:1;display: flex;flex-direction: column;justify-content: center;align-items: center;">
+                <div style="margin-left: 40px;margin-right: 40px;margin-top: 20px;">
+                    <p style="font-size:24px;text-align: left;letter-spacing: 2px;margin:0;font-weight: bold;">
+                        <span style="background-color:#005db4;color:#fff; padding: 3px 16px;">项目经历</span>
+                    </p>
+                    <div style="width:100% !important;border-bottom: 2px solid #005db4;"></div>
+                    
+                    <% for (let index in project) { %>
+                        <div style="width:100% !important;margin-top: 18px;">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td style="padding-right: 0px;padding-left: 0px;" align="left">
+                                        <span style="font-size: 18px;font-weight: bold;"><%= project[index].pro_name %></span>
+                                        
+                                    </td>
+                                    <td style="padding-right: 0px;padding-left: 0px;" align="right">
+                                        <p style="margin-left: 20px;"><%= pdfUtil.formatYearMonth(project[index].pro_start) %> - <%= pdfUtil.formatYearMonth(project[index].pro_end) %></p>
+                                    </td>
+                                </tr>
+                            </table>
+                            <p style="white-space: pre-line;line-height: 1.5;margin-top:-10px;width:100% !important;" align="left">
+                                <%= project[index].remark %>
+                            </p>
+                        </div>
+                    <% } %>
+                </p> 
+            </div>
+            <div style="width:100%;flex:1;display: flex;flex-direction: column;justify-content: center;align-items: center;">
+                <div style="margin-left: 40px;margin-right: 40px;margin-top: 20px;">
+                    <p style="font-size:24px;text-align: left;letter-spacing: 2px;margin:0;font-weight: bold;">
+                        <span style="background-color:#005db4;color:#fff; padding: 3px 16px;">教育经历</span>
+                    </p>
+                    <div style="width:100% !important;border-bottom: 2px solid #005db4;"></div>
+                    <% for (let index in edu) { %>
+                        <div style="width:100% !important;margin-top: 18px;">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td style="padding-right: 0px;padding-left: 0px;" align="left">
+                                        <span style="font-size: 18px;font-weight: bold;"><%= edu[index].college %></span>
+                                        <span style="margin-left: 20px;"><%= pdfUtil.formatEduTitle(edu[index]) %></span>
+                                    </td>
+                                    <td style="padding-right: 0px;padding-left: 0px;" align="right">
+                                        <p style="margin-left: 20px;"><%= pdfUtil.formatYearMonth(edu[index].edu_start) %> - <%= pdfUtil.formatYearMonth(edu[index].edu_end) %></p>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- <p style="white-space: pre-line;line-height: 1.5;margin-top:-10px;width:100% !important;" align="left">
+                                <%= edu[index].remark %>
+                            </p> -->
+                        </div>
+                    <% } %>
+                    
+                    
+                </p> 
+            </div>
+        </div>
+    </body>
+</html>
