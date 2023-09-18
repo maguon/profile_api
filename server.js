@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const createError = require('http-errors');
 const wkhtmltopdf = require('wkhtmltopdf');
 
@@ -25,7 +26,10 @@ const createServer = () => {
     app.use(express.urlencoded({ extended: true }));
     app.use(express.static(path.join(__dirname, 'public')));
     app.use(express.static(path.join(__dirname, 'uploads')))
-    
+    app.use(fileUpload({
+        useTempFiles : true,
+        tempFileDir : './tmp/'
+    }));
     //user admin api
     app.get('/api/admin/feedback',queryFeedback)
     app.get('/api/admin/profileTpl',queryProfileTpl)

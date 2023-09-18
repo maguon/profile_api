@@ -20,6 +20,7 @@
 
 /config/index.js
 /uploads/*
+/tmp/*
 /.vscode
 /logs
 /zip
