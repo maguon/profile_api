@@ -205,7 +205,6 @@ create trigger user_info_upt before
 update on user_info for each row execute procedure update_timestamp_func();
 select setval('user_info_id_seq', 100000, false);
 
-CREATE UNIQUE INDEX user_profile_id_unique ON user_profile (user_id); 
 -- ----------------------------
 -- Table structure for user_profile
 -- ----------------------------

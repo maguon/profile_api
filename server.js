@@ -17,6 +17,7 @@ const {queryJobTypeSub} = require("./bl/BaseBl.js");
 const profileBl = require("./bl/ProfileBl.js");
 const {uploadImage} = require("./bl/ImageBl.js");
 const {createProfileTpl,updateProfileTpl,queryProfileTpl} = require("./bl/ProfileTplBl.js");
+const {getUserIdByCode} = require("./bl/WechatBl.js")
 
 // URL
 
@@ -69,7 +70,7 @@ const createServer = () => {
     app.post('/api/token',refreshToken)
     app.post('/api/login',loginByWechatId)
     app.get('/api/activeEmail',activeEmail)
-
+    app.get('/api/public/wechat/:code/openid',getUserIdByCode);
     // public api
     app.get('/api/public/baseJobTypeSub',queryJobTypeSub) 
     

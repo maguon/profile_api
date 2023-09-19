@@ -37,7 +37,6 @@ const get = async(url,headers) => {
     method: 'GET',
     headers: headers,
   }).then((response) => {
-    console.log(response)
     if (response.status ==200) {
         return response.data;
     } else {
