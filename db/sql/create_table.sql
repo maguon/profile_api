@@ -189,12 +189,17 @@ CREATE TABLE public.user_info (
     "id" bigserial NOT NULL,
     "created_at" timestamp with time zone NOT NULL DEFAULT NOW(),
     "updated_at" timestamp with time zone NOT NULL DEFAULT NOW(),
+    "login_at" timestamp with time zone NOT NULL DEFAULT NOW(),
     "status" int2 NOT NULL,
     "date_id" int4 NOT NULL,
+    "login_date_id" int4 NOT NULL,
     "name" varchar(50) NULL,
     "phone" varchar(20) NULL,
     "email" varchar(100) NULL ,
     "password" varchar(100) NULL ,
+    "wechat_id" varchar(50) NULL,
+    "wechat_name" varchar(10) NULL,
+    "wechat_avatar" varchar(20) NULL,
     "gender" int2 NOT NULL,
     "birth" date NULL,
     CONSTRAINT user_info_pk PRIMARY KEY (id)
@@ -205,6 +210,7 @@ create trigger user_info_upt before
 update on user_info for each row execute procedure update_timestamp_func();
 select setval('user_info_id_seq', 100000, false);
 
+CREATE UNIQUE INDEX user_wechat_id_unique ON user_info (wechat_id); 
 -- ----------------------------
 -- Table structure for user_profile
 -- ----------------------------

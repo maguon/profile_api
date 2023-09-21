@@ -44,9 +44,9 @@ class UserInfoDAO {
         }
         
         paramsObj.date_id = moment(new Date()).format('YYYY-MM-DD')
-        paramsObj.last_login_id = moment(new Date()).format('YYYY-MM-DD')
-        paramsObj.last_login_at = new Date()
-        let query = ' INSERT INTO user_profile_opt (${this:name}) VALUES (${this:csv}) RETURNING *';
+        paramsObj.login_date_id = moment(new Date()).format('YYYY-MM-DD')
+        paramsObj.login_at = new Date()
+        let query = ' INSERT INTO user_info (${this:name}) VALUES (${this:csv}) RETURNING *';
         return await pgDb.one(query,paramObj);
         
     }
@@ -138,13 +138,13 @@ class UserInfoDAO {
             paramObj.password = params.password;
             columnArray.push('password');
         }
-        if(params.lastLoginAt){           
-            paramObj.last_login_at = params.lastLoginAt;
-            columnArray.push('last_login_at');
+        if(params.loginAt){           
+            paramObj.login_at = params.loginAt;
+            columnArray.push('login_at');
         }
-        if(params.lastLoginId){           
-            paramObj.last_login_id = params.lastLoginId;
-            columnArray.push('last_login_id');
+        if(params.loginDateId){           
+            paramObj.login_id = params.loginDateId;
+            columnArray.push('login_date_id');
         }
         const cs = new pgp.helpers.ColumnSet(columnArray);
         const query = pgp.helpers.update(paramObj, cs, 'user_info');

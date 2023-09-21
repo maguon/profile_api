@@ -1,10 +1,13 @@
+const moment = require('moment')
 const serverLogger = require('../util/ServerLogger.js');
 const logger = serverLogger.createLog({file:"WechatBl.js"});
 const httpUtil = require('../util/HttpUtil.js');
 const resUtil = require('../util/ResUtil.js');
 const sysConst = require('../util/SysConst.js');
 const config = require ('../config')
-const getUserIdByCode = (req,res,next) =>{
+const userInfoDAO = require("../dao/UserInfoDAO")
+
+const getUserIdByCode = async(req,res,next) =>{
     
     const paramObj = {
         appid : config.wechatConfig.mpAppId,
@@ -14,10 +17,32 @@ const getUserIdByCode = (req,res,next) =>{
     }
     const headers = {'Content-Type':'application/json;charset=utf-8'}
     const url = `${config.wechatConfig.mpHost}/sns/jscode2session?${httpUtil.objectToUrl(paramObj)}`;
+    const wechatResultString =  await httpUtil.get(url,headers);
+    const wechatResultObj = JSON.stringify(wechatResultString)
+    if(wechatResultObj.openid != null){
+        logger.info(" getUserIdByCode " +wechatResultObj.openid)
+        const queryRes = await userInfoDAO.queryUserInfoBase({wechatId:wechatResultObj.openid});
+        if(queryRes != null && queryRes.length>0){
+            const updateRes = await userInfoDAO.updateUserInfo({id:queryRes[0].id,loginAt:new Date().getTime(),loginDateId : moment(new Date()).format('YYYY-MM-DD')})
+            console.log(updateRes)
+            const newToken = jwtUtil.getUserToken(queryRes[0].id,tokenObj.wechatId)
+            wechatResultObj.authToken = newToken
+        }else{
+            const insertRes = await userInfoDAO.createUserInfo({wechatId:wechatResultObj.openid})
+            console.log(insertRes)
+            const newToken = jwtUtil.getUserToken(insertRes.id,tokenObj.wechatId)
+            wechatResultObj.authToken = newToken
+        }
+        resUtil.successRes(res,wechatResultObj,'')
+    }else{
+        logger.warn(" getUserIdByCode " +req.params.code)
+        resUtil.failedRes(res,wechatResultObj,'')
+    }
     
     httpUtil.get(url,headers).then(result => {
-        logger.info(" getUserIdByCode " +req.params.code)
-        resUtil.successRes(res,JSON.stringify(result),'')
+        
+        
+        
     }).catch(error => {
         logger.error("getUserIdByCode" + error.stack)
         return next( createError(500, sysConst.ERROR_INTERNAL_MSG))
