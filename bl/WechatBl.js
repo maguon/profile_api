@@ -29,7 +29,7 @@ const getUserIdByCode = async(req,res,next) =>{
             const newToken = jwtUtil.getUserToken(queryRes[0].id,tokenObj.wechatId)
             wechatResultObj.authToken = newToken
         }else{
-            const insertRes = await userInfoDAO.createUserInfo({wechatId:wechatResultObj.openid})
+            const insertRes = await userInfoDAO.createUserInfo({wechatId:wechatResultObj.openid,status:1})
             console.log(insertRes)
             const newToken = jwtUtil.getUserToken(insertRes.id,tokenObj.wechatId)
             wechatResultObj.authToken = newToken

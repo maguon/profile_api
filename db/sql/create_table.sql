@@ -200,7 +200,7 @@ CREATE TABLE public.user_info (
     "wechat_id" varchar(50) NULL,
     "wechat_name" varchar(10) NULL,
     "wechat_avatar" varchar(20) NULL,
-    "gender" int2 NOT NULL,
+    "gender" int2 NULL,
     "birth" date NULL,
     CONSTRAINT user_info_pk PRIMARY KEY (id)
 );

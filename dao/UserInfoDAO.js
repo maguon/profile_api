@@ -43,8 +43,8 @@ class UserInfoDAO {
             paramObj.birth = params.birth;
         }
         
-        paramObj.date_id = moment(new Date()).format('YYYY-MM-DD')
-        paramObj.login_date_id = moment(new Date()).format('YYYY-MM-DD')
+        paramObj.date_id = moment(new Date()).format('YYYYMMDD')
+        paramObj.login_date_id = moment(new Date()).format('YYYYMMDD')
         paramObj.login_at = new Date()
         let query = ' INSERT INTO user_info (${this:name}) VALUES (${this:csv}) RETURNING *';
         return await pgDb.one(query,paramObj);
