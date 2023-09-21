@@ -17,8 +17,9 @@ const getUserIdByCode = async(req,res,next) =>{
     }
     const headers = {'Content-Type':'application/json;charset=utf-8'}
     const url = `${config.wechatConfig.mpHost}/sns/jscode2session?${httpUtil.objectToUrl(paramObj)}`;
-    const wechatResultString =  await httpUtil.get(url,headers);
-    const wechatResultObj = JSON.stringify(wechatResultString)
+    
+    const wechatResultObj =  await httpUtil.get(url,headers);
+
     if(wechatResultObj.openid != null){
         logger.info(" getUserIdByCode " +wechatResultObj.openid)
         const queryRes = await userInfoDAO.queryUserInfoBase({wechatId:wechatResultObj.openid});
