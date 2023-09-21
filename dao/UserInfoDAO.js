@@ -52,7 +52,7 @@ class UserInfoDAO {
     }
 
     static async queryUserInfoBase(params) {
-        let query = `select * from user_info where id != null `;
+        let query = `select * from user_info where id is not null `;
         let filterObj = {};
         if(params.id){
             query += " and id = ${id} ";
