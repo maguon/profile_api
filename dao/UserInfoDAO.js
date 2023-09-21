@@ -43,9 +43,9 @@ class UserInfoDAO {
             paramObj.birth = params.birth;
         }
         
-        paramsObj.date_id = moment(new Date()).format('YYYY-MM-DD')
-        paramsObj.login_date_id = moment(new Date()).format('YYYY-MM-DD')
-        paramsObj.login_at = new Date()
+        paramObj.date_id = moment(new Date()).format('YYYY-MM-DD')
+        paramObj.login_date_id = moment(new Date()).format('YYYY-MM-DD')
+        paramObj.login_at = new Date()
         let query = ' INSERT INTO user_info (${this:name}) VALUES (${this:csv}) RETURNING *';
         return await pgDb.one(query,paramObj);
         
@@ -58,9 +58,9 @@ class UserInfoDAO {
             query += " and id = ${id} ";
             filterObj.id = params.id;
         }
-        if(params.userId){
-            query += " and wechat_id = ${userId} ";
-            filterObj.userId = params.userId;
+        if(params.wechatId){
+            query += " and wechat_id = ${wechatId} ";
+            filterObj.wechatId = params.wechatId;
         }
         if(params.phone){
             query += " and phone = ${phone} ";
@@ -91,6 +91,8 @@ class UserInfoDAO {
         logger.debug(' queryUserInfoBase ');
         return await pgDb.any(query,filterObj);
     }
+
+
     static async updateUserInfo (params) {
         let paramObj = {};
         let columnArray = []
