@@ -3,6 +3,7 @@ const serverLogger = require('../util/ServerLogger.js');
 const logger = serverLogger.createLog({file:"WechatBl.js"});
 const httpUtil = require('../util/HttpUtil.js');
 const resUtil = require('../util/ResUtil.js');
+const jwtUtil = require("../util/JwtUtil")
 const sysConst = require('../util/SysConst.js');
 const config = require ('../config')
 const userInfoDAO = require("../dao/UserInfoDAO")
@@ -25,12 +26,10 @@ const getUserIdByCode = async(req,res,next) =>{
         const queryRes = await userInfoDAO.queryUserInfoBase({wechatId:wechatResultObj.openid});
         if(queryRes != null && queryRes.length>0){
             const updateRes = await userInfoDAO.updateUserInfo({id:queryRes[0].id,loginAt:new Date().getTime(),loginDateId : moment(new Date()).format('YYYY-MM-DD')})
-            console.log(updateRes)
             const newToken = jwtUtil.getUserToken(queryRes[0].id,tokenObj.wechatId)
             wechatResultObj.authToken = newToken
         }else{
             const insertRes = await userInfoDAO.createUserInfo({wechatId:wechatResultObj.openid,status:1})
-            console.log(insertRes)
             const newToken = jwtUtil.getUserToken(insertRes.id,tokenObj.wechatId)
             wechatResultObj.authToken = newToken
         }
