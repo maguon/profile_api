@@ -26,7 +26,7 @@ const getUserIdByCode = async(req,res,next) =>{
         const queryRes = await userInfoDAO.queryUserInfoBase({wechatId:wechatResultObj.openid});
         console.log(queryRes)
         if(queryRes != null && queryRes.length>0){
-            const updateRes = await userInfoDAO.updateUserInfo({id:queryRes[0].id,loginAt:new Date().getTime(),loginDateId : moment(new Date()).format('YYYYMMDD')})
+            const updateRes = await userInfoDAO.updateUserInfo({id:queryRes[0].id,loginAt:new Date().toISOString(),loginDateId : moment(new Date()).format('YYYYMMDD')})
             const newToken = jwtUtil.getUserToken(queryRes[0].id,wechatResultObj.openid)
             wechatResultObj.authToken = newToken
             wechatResultObj.id = queryRes[0].id
