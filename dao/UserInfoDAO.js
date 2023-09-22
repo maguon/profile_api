@@ -145,7 +145,7 @@ class UserInfoDAO {
             columnArray.push('login_at');
         }
         if(params.loginDateId){           
-            paramObj.login_id = params.loginDateId;
+            paramObj.login_date_id = params.loginDateId;
             columnArray.push('login_date_id');
         }
         const cs = new pgp.helpers.ColumnSet(columnArray);
