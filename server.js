@@ -13,7 +13,7 @@ const {sendEmailActiveUrl,sendProfileEmail} = require("./bl/MailBl.js");
 const {getUserProfilePdf} = require("./bl/PdfBl.js");
 const {activeEmail,refreshToken,loginByWechatId} = require("./bl/UserBl.js");
 const {queryFeedback,createFeedback} = require("./bl/FeedbackBl.js");
-const {queryJobTypeSub} = require("./bl/BaseBl.js");
+const {queryJobTypeSub, queryProvidence, queryCity, queryArea, queryBaseJob, queryBaseJobType, queryBaseJobTypeSub} = require("./bl/BaseBl.js");
 const profileBl = require("./bl/ProfileBl.js");
 const {uploadImage} = require("./bl/ImageBl.js");
 const {createProfileTpl,updateProfileTpl,queryProfileTpl} = require("./bl/ProfileTplBl.js");
@@ -22,7 +22,17 @@ const {getUserIdByCode} = require("./bl/WechatBl.js")
 // URL
 
 const createServer = () => {
-    const app = express()
+    const app = express();
+    
+    app.all("*",(req, res, next) =>{
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "*");
+        res.header("Access-Control-Allow-Credentials", "true");
+        res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");    
+        
+        next();
+    });
+
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(express.static(path.join(__dirname, 'public')));
@@ -73,6 +83,12 @@ const createServer = () => {
     app.get('/api/public/wechat/:code/openid',getUserIdByCode);
     // public api
     app.get('/api/public/baseJobTypeSub',queryJobTypeSub) 
+    app.get('/api/public/job',queryBaseJob) 
+    app.get('/api/public/jobType',queryBaseJobType) 
+    app.get('/api/public/jobTypeSub',queryBaseJobTypeSub) 
+    app.get('/api/public/providence',queryProvidence) 
+    app.get('/api/public/city',queryCity) 
+    app.get('/api/public/area',queryArea) 
     
     app.get('/',(req,res,next) => {
         return next( createError.NotFound())

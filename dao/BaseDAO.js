@@ -29,7 +29,52 @@ class BaseDAO {
         logger.debug(' queryBaseJob ');
         return await pgDb.any(query,filterObj);
     }
+
+    static async queryBaseJobType(params) {
+        let filterObj = {}
+        let query = `
+            select *  from base_job_type bjt where id >0 
+        `;
+        if(params.id){
+            query += " and id = ${id} ";
+            filterObj.id = params.id;
+        }
+        if(params.jid){
+            query += " and j_id = ${jid} ";
+            filterObj.jid = params.jid;
+        }
+        if(params.status){
+            query += " and status = ${status} ";
+            filterObj.status = params.status;
+        }
+        logger.debug(' queryBaseJobType ');
+        return await pgDb.any(query,filterObj);
+    }
     static async queryBaseJobTypeSub(params) {
+        let filterObj = {}
+        let query = `
+            select *  from base_job_type_sub bjts where id >0 
+        `;
+        if(params.id){
+            query += " and id = ${id} ";
+            filterObj.id = params.id;
+        }
+        if(params.jid){
+            query += " and j_id = ${jid} ";
+            filterObj.jid = params.jid;
+        }
+        if(params.tid){
+            query += " and t_id = ${tid} ";
+            filterObj.tid = params.tid;
+        }
+        if(params.status){
+            query += " and status = ${status} ";
+            filterObj.status = params.status;
+        }
+        logger.debug(' queryBaseJobType ');
+        return await pgDb.any(query,filterObj);
+    }
+    static async queryJobTypeSub(params) {
         let filterObj = {}
         let query = `
             select bjt.id,bjt.name,jsonb_agg(jsonb_build_object('id', bjts.id, 'name', bjts.name) order by bjts.id) as children 
@@ -80,6 +125,69 @@ class BaseDAO {
         }
         query += ' group by bp.id,bp.name '
         logger.debug(' queryProvidenceCityAll ');
+        return await pgDb.any(query,filterObj);
+    }
+
+    static async queryBaseProvidence(params) {
+        let filterObj = {}
+        let query = `
+            select *  from base_providence bp where id >0 
+        `;
+        if(params.id){
+            query += " and id = ${id} ";
+            filterObj.id = params.id;
+        }
+        if(params.status){
+            query += " and status = ${status} ";
+            filterObj.status = params.status;
+        }
+        logger.debug(' queryBaseProvidence ');
+        return await pgDb.any(query,filterObj);
+    }
+
+    static async queryBaseCity(params) {
+        let filterObj = {}
+        let query = `
+            select *  from base_city bc where id >0 
+        `;
+        if(params.id){
+            query += " and id = ${id} ";
+            filterObj.id = params.id;
+        }
+        if(params.pid){
+            query += " and p_id = ${pid} ";
+            filterObj.pid = params.pid;
+        }
+        if(params.status){
+            query += " and status = ${status} ";
+            filterObj.status = params.status;
+        }
+        logger.debug(' queryBaseCity ');
+        return await pgDb.any(query,filterObj);
+    }
+
+    static async queryBaseArea(params) {
+        let filterObj = {}
+        let query = `
+            select *  from base_area ba where id >0 
+        `;
+        if(params.id){
+            query += " and id = ${id} ";
+            filterObj.id = params.id;
+        }
+        if(params.pid){
+            query += " and p_id = ${pid} ";
+            filterObj.pid = params.pid;
+        }
+        if(params.cid){
+            query += " and c_id = ${cid} ";
+            filterObj.cid = params.cid;
+        }
+        if(params.status){
+            query += " and status = ${status} ";
+            filterObj.status = params.status;
+        }
+        logger.debug(' queryBaseArea ');
         return await pgDb.any(query,filterObj);
     }
 
