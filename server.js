@@ -102,11 +102,7 @@ const createServer = () => {
         res.send('This a message server ,your request is unautherized !')
     })
     
-    app.use(function(req, res, next) {
-        console.log(req.path)
-        console.log(req.body)
-        return next(new createError.NotFound())
-    });
+    
    
     logger.info("init router success ")
     return app;
