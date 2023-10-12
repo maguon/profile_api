@@ -79,7 +79,7 @@ const queryBaseJobTypeSub = async(req,res,next) => {
 const queryProvidence = async(req,res,next) => {
     const queryParams = req.query;
     try{
-        const queryRes = await baseDAO.queryBaseIndustry(queryParams);
+        const queryRes = await baseDAO.queryBaseProvidence(queryParams);
         if(queryRes != null){
             logger.info('queryProvidence success')
             resUtil.successRes(res,queryRes,'')
