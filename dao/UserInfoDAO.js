@@ -66,6 +66,10 @@ class UserInfoDAO {
             query += " and phone = ${phone} ";
             filterObj.phone = params.phone;
         }
+        if(params.password){
+            query += " and password = ${password} ";
+            filterObj.password = params.password;
+        }
         if(params.status){
             query += " and status = ${status} ";
             filterObj.status = params.status;

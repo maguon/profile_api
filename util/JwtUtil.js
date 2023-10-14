@@ -21,8 +21,8 @@ const getActiveEmailUrl = (userId,email) => {
     return token
 }
 
-const getUserToken = (userId,wechatId) => {
-    const token = jwt.sign({userId,wechatId,expiredAt:Math.floor(Date.now() / 1000) +jwtExpired*30}, jwtKey);
+const getUserToken = (userId) => {
+    const token = jwt.sign({userId,expiredAt:Math.floor(Date.now() / 1000) +jwtExpired*30}, jwtKey);
     return token
 }
 module.exports = {

@@ -11,7 +11,7 @@ const logger = serverLogger.createLog({file:"server.js"});
 const {checkUserToken} = require("./bl/AuthBl");
 const {sendEmailActiveUrl,sendProfileEmail} = require("./bl/MailBl.js");
 const {getUserProfilePdf} = require("./bl/PdfBl.js");
-const {activeEmail,refreshToken,loginByWechatId} = require("./bl/UserBl.js");
+const {activeEmail,refreshToken,loginByWechatId, userLogin} = require("./bl/UserBl.js");
 const {queryFeedback,createFeedback} = require("./bl/FeedbackBl.js");
 const {queryJobTypeSub, queryProvidence, queryCity, queryArea, queryBaseJob, queryBaseJobType, queryBaseJobTypeSub} = require("./bl/BaseBl.js");
 const profileBl = require("./bl/ProfileBl.js");
@@ -78,7 +78,8 @@ const createServer = () => {
     app.get('/api/profile.pdf',getUserProfilePdf)
     app.post('/api/profileMail',checkUserToken ,sendProfileEmail)
     app.post('/api/token',refreshToken)
-    app.post('/api/login',loginByWechatId)
+    app.post('/api/wechatLogin',loginByWechatId)
+    app.post('/api/login',userLogin)
     app.get('/api/activeEmail',activeEmail)
     app.get('/api/public/wechat/:code/openid',getUserIdByCode);
     // public api

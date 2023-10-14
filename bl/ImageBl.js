@@ -17,8 +17,6 @@ const uploadImage = async(req,res,next) => {
             resUtil.successRes(res,{url: req.files.file.name},'')
         }
     });
-    
-
 }
 
 module.exports ={

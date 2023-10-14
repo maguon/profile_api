@@ -16,7 +16,7 @@ const queryProfileOpt = async(req,res,next) => {
             resUtil.successRes(res,queryRes,'')
         }else{
             logger.info('queryProfileOpt failed')
-            resUtil.successRes(res,{},"query failed")
+            resUtil.failedRes(res,{},"query failed")
         }
     }catch(e){
         logger.error('queryProfileOpt '+ e.stack)
@@ -33,7 +33,7 @@ const queryProfileEdu = async(req,res,next) => {
             resUtil.successRes(res,queryRes,'')
         }else{
             logger.info('queryProfileEdu failed')
-            resUtil.successRes(res,{},"query failed")
+            resUtil.failedRes(res,{},"query failed")
         }
     }catch(e){
         logger.error('queryProfileEdu '+ e.stack)
@@ -51,7 +51,7 @@ const queryProfileWork = async(req,res,next) => {
             resUtil.successRes(res,queryRes,'')
         }else{
             logger.info('queryProfileWork failed')
-            resUtil.successRes(res,{},"query failed")
+            resUtil.failedRes(res,{},"query failed")
         }
     }catch(e){
         logger.error('queryProfileWork '+ e.stack)
@@ -68,7 +68,7 @@ const queryProfileProject = async(req,res,next) => {
             resUtil.successRes(res,queryRes,'')
         }else{
             logger.info('queryProfileProject failed')
-            resUtil.successRes(res,{},"query failed")
+            resUtil.failedRes(res,{},"query failed")
         }
     }catch(e){
         logger.error('queryProfileProject '+ e.stack)
@@ -87,7 +87,7 @@ const queryUserProfile = async(req,res,next) => {
             resUtil.successRes(res,queryRes,'')
         }else{
             logger.info('queryUserProfile failed')
-            resUtil.successRes(res,{},"query failed")
+            resUtil.failedRes(res,{},"query failed")
         }
     }catch(e){
         logger.error('queryUserProfile '+ e.stack)
@@ -105,7 +105,7 @@ const createProfileOpt = async(req,res,next) => {
             resUtil.successRes(res,createRes,'')
         }else{
             logger.info('createProfileOpt failed')
-            resUtil.successRes(res,{},msg)
+            resUtil.failedRes(res,{},msg)
         }
     }catch(e){
         logger.error('createProfileOpt '+ e.stack)
@@ -122,7 +122,7 @@ const createProfileEdu = async(req,res,next) => {
             resUtil.successRes(res,createRes,'')
         }else{
             logger.info('createProfileEdu failed')
-            resUtil.successRes(res,{},msg)
+            resUtil.failedRes(res,{},msg)
         }
     }catch(e){
         logger.error('createProfileEdu '+ e.stack)
@@ -140,7 +140,7 @@ const createProfileWork = async(req,res,next) => {
             resUtil.successRes(res,createRes,'')
         }else{
             logger.info('createProfileWork failed')
-            resUtil.successRes(res,{},msg)
+            resUtil.failedRes(res,{},msg)
         }
     }catch(e){
         logger.error('createProfileWork '+ e.stack)
@@ -158,7 +158,7 @@ const createProfileProject = async(req,res,next) => {
             resUtil.successRes(res,createRes,'')
         }else{
             logger.info('createProfileProject failed')
-            resUtil.successRes(res,{},msg)
+            resUtil.failedRes(res,{},msg)
         }
     }catch(e){
         logger.error('createProfileProject '+ e.stack)
@@ -177,7 +177,7 @@ const updateProfileOpt = async(req,res,next) => {
             resUtil.successRes(res,updateRes,'')
         }else{
             logger.info('updateProfileOpt failed')
-            resUtil.successRes(res,{},msg)
+            resUtil.failedRes(res,{},msg)
         }
     }catch(e){
         logger.error('updateProfileOpt '+ e.stack)
@@ -200,7 +200,7 @@ const updateProfileEdu = async(req,res,next) => {
             resUtil.successRes(res,updateRes,'')
         }else{
             logger.info('updateProfileEdu failed')
-            resUtil.successRes(res,{},msg)
+            resUtil.failedRes(res,{},msg)
         }
     }catch(e){
         logger.error('updateProfileEdu '+ e.stack)
@@ -223,7 +223,7 @@ const updateProfileWork = async(req,res,next) => {
             resUtil.successRes(res,updateRes,'')
         }else{
             logger.info('updateProfileWork failed')
-            resUtil.successRes(res,{},msg)
+            resUtil.failedRes(res,{},msg)
         }
     }catch(e){
         logger.error('updateProfileWork '+ e.stack)
@@ -246,7 +246,7 @@ const updateProfileProject = async(req,res,next) => {
             resUtil.successRes(res,updateRes,'')
         }else{
             logger.info('updateProfileProject failed')
-            resUtil.successRes(res,{},msg)
+            resUtil.failedRes(res,{},msg)
         }
     }catch(e){
         logger.error('updateProfileProject '+ e.stack)
@@ -269,7 +269,7 @@ const updateProfile = async(req,res,next) => {
             resUtil.successRes(res,updateRes,'')
         }else{
             logger.info('updateProfile failed')
-            resUtil.successRes(res,{},msg)
+            resUtil.failedRes(res,{},msg)
         }
     }catch(e){
         logger.error('updateProfile '+ e.stack)

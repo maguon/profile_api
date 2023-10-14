@@ -149,12 +149,21 @@ const WXBizDataCrypt=(appId, sessionKey,encryptedData, iv)=>{
     }
     return decoded;
 }
+const encryptByMd5NoKey=(clearText)=>{
+    let Buffer = require("buffer").Buffer;
+    let buf = new Buffer(clearText);
+    let str = buf.toString("binary");
+    let md5 = crypto.createHash('md5');
+    return md5.update(str).digest('hex').toUpperCase();
+}
+
 module.exports = {
     base64Decode,
     base64Encode,
     getSmsRandomKey,
     getEntrustRandomKey  ,
     getSHA256Encode ,
+    encryptByMd5NoKey,
     WXBizDataCrypt ,
 };
 
