@@ -51,33 +51,33 @@ const createServer = () => {
     //user private api
     app.post('/api/private/feedback',createFeedback)
 
-    app.get('/api/private/user',getUserSelf)
+    app.get('/api/private/user',checkUserToken,getUserSelf)
 
-    app.get('/api/private/profile',profileBl.queryUserProfile)
-    app.put('/api/private/profile/:profileId',profileBl.updateProfile)
+    app.get('/api/private/profile',checkUserToken,profileBl.queryUserProfile)
+    app.put('/api/private/profile/:profileId',checkUserToken,profileBl.updateProfile)
 
-    app.post('/api/private/profileOpt',profileBl.createProfileOpt)
-    app.get('/api/private/profileOpt',profileBl.queryProfileOpt)
-    app.put('/api/private/profileOpt/:profileOptId',profileBl.updateProfileOpt)
+    app.post('/api/private/profileOpt',checkUserToken,profileBl.createProfileOpt)
+    app.get('/api/private/profileOpt',checkUserToken,profileBl.queryProfileOpt)
+    app.put('/api/private/profileOpt/:profileOptId',checkUserToken,profileBl.updateProfileOpt)
 
-    app.post('/api/private/profileEdu',profileBl.createProfileEdu)
-    app.get('/api/private/profileEdu',profileBl.queryProfileEdu)
-    app.put('/api/private/profileEdu/:profileEduId',profileBl.updateProfileEdu)
+    app.post('/api/private/profileEdu',checkUserToken,profileBl.createProfileEdu)
+    app.get('/api/private/profileEdu',checkUserToken,profileBl.queryProfileEdu)
+    app.put('/api/private/profileEdu/:profileEduId',checkUserToken,profileBl.updateProfileEdu)
 
-    app.post('/api/private/profileWork',profileBl.createProfileWork)
-    app.get('/api/private/profileWork',profileBl.queryProfileWork)
+    app.post('/api/private/profileWork',checkUserToken,profileBl.createProfileWork)
+    app.get('/api/private/profileWork',checkUserToken,profileBl.queryProfileWork)
     app.put('/api/private/profileWork/:profileWorkId',profileBl.updateProfileWork)
 
-    app.post('/api/private/profileProject',profileBl.createProfileProject)
-    app.get('/api/private/profileProject',profileBl.queryProfileProject)
-    app.put('/api/private/profileProject/:profileProjectId',profileBl.updateProfileProject)
+    app.post('/api/private/profileProject',checkUserToken,profileBl.createProfileProject)
+    app.get('/api/private/profileProject',checkUserToken,profileBl.queryProfileProject)
+    app.put('/api/private/profileProject/:profileProjectId',checkUserToken,profileBl.updateProfileProject)
 
-    app.get('/api/private/profile',profileBl.queryUserProfile)
-    app.put('/api/private/profile/:profileId',profileBl.updateProfile)
+    app.get('/api/private/profile',checkUserToken,profileBl.queryUserProfile)
+    app.put('/api/private/profile/:profileId',checkUserToken,profileBl.updateProfile)
 
-    app.post('/api/private/image',uploadImage)
+    app.post('/api/private/image',checkUserToken,uploadImage)
 
-    app.get('/api/profile.pdf',getUserProfilePdf)
+    app.get('/api/profile.pdf',checkUserToken,getUserProfilePdf)
     app.post('/api/profileMail',checkUserToken ,sendProfileEmail)
     app.post('/api/token',refreshToken)
     app.post('/api/wechatLogin',loginByWechatId)
