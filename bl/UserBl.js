@@ -9,6 +9,7 @@ const encrypt = require('../util/Encrypt')
 const redis = require("../dao/RedisDAO")
 const userInfoDAO = require("../dao/UserInfoDAO")
 const serverLogger = require('../util/ServerLogger.js');
+const UserInfoDAO = require('../dao/UserInfoDAO')
 const logger = serverLogger.createLog({file:"UserBl.js"});
 
 
@@ -129,9 +130,28 @@ const refreshToken = async(req,res,next) => {
         }
     }    
 }
+
+const getUserSelf = async(req,res,next) => {
+    userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    try{
+        const queryRes = await UserInfoDAO.queryUserInfoBase({userId:userAuth.ID});
+        if(queryRes != null){
+            logger.info('queryProfileEdu success')
+            queryRes.password = ""
+            resUtil.successRes(res,queryRes,'')
+        }else{
+            logger.info('queryProfileEdu failed')
+            resUtil.failedRes(res,{},"query failed")
+        }
+    }catch(e){
+        logger.error('queryProfileEdu '+ e.stack)
+        return next(new createError.InternalServerError());
+    }
+}
 module.exports = {
     activeEmail ,
     userLogin,
     loginByWechatId,
-    refreshToken
+    refreshToken ,
+    getUserSelf
 }
