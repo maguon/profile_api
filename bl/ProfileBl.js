@@ -1,4 +1,5 @@
 const createError = require('http-errors')
+const moment = require('moment')
 
 const config = require("../config")
 const userProfileDAO = require("../dao/UserProfileDAO.js")
@@ -168,6 +169,7 @@ const createProfileProject = async(req,res,next) => {
 
 const createProfile = async(req,res,next) => {
     const bodyParams = req.body;
+    bodyParams.dateId = moment(new Date()).format('YYYYMMDD')
     try{
         const createRes = await userProfileDAO.createUserProfile(bodyParams);
         if(createRes != null){
@@ -186,7 +188,7 @@ const createProfile = async(req,res,next) => {
 const updateProfileOpt = async(req,res,next) => {
     const bodyParams = req.body;
     bodyParams.id = req.params.profileOptId;
-   
+    bodyParams.dateId = moment(new Date()).format('YYYYMMDD')
     try{
         const updateRes = await userProfileDAO.updateUserProfileOpt(bodyParams);
         if(updateRes != null){
