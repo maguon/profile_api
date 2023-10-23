@@ -154,7 +154,7 @@ const updateUserInfo = async(req,res,next) => {
     const bodyParams = req.body;
     
     userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
-    bodyParams.userId = userAuth.userId
+    bodyParams.id = userAuth.userId
     
     try{
         const updateRes = await userInfoDAO.updateUserInfo(bodyParams);
