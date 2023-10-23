@@ -108,6 +108,10 @@ class UserInfoDAO {
             paramObj.phone = params.phone;
             columnArray.push('phone');
         }
+        if(params.name){            
+            paramObj.name = params.name;
+            columnArray.push('name');
+        }
         if(params.status){
             paramObj.status = params.status;
             columnArray.push('status');

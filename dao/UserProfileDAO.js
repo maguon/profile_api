@@ -82,9 +82,6 @@ class UserProfileDAO {
         if(params.userId){
             paramObj.user_id = params.userId;
         }
-        if(params.phone){            
-            paramObj.phone = params.phone;
-        }
         if(params.status){
             paramObj.status = params.status;
         }
