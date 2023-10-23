@@ -54,6 +54,7 @@ const createServer = () => {
     app.get('/api/private/user',checkUserToken,getUserSelf)
 
     app.get('/api/private/profile',checkUserToken,profileBl.queryUserProfile)
+    app.post('/api/private/profile',checkUserToken,profileBl.createProfile)
     app.put('/api/private/profile/:profileId',checkUserToken,profileBl.updateProfile)
 
     app.post('/api/private/profileOpt',checkUserToken,profileBl.createProfileOpt)

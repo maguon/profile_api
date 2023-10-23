@@ -166,6 +166,23 @@ const createProfileProject = async(req,res,next) => {
     }
 }
 
+const createProfile = async(req,res,next) => {
+    const bodyParams = req.body;
+    try{
+        const createRes = await userProfileDAO.createUserProfile(bodyParams);
+        if(createRes != null){
+            logger.info('createProfile success')
+            resUtil.successRes(res,createRes,'')
+        }else{
+            logger.info('createProfile failed')
+            resUtil.failedRes(res,{},msg)
+        }
+    }catch(e){
+        logger.error('createProfile '+ e.stack)
+        return next(new createError.InternalServerError());
+    }
+}
+
 const updateProfileOpt = async(req,res,next) => {
     const bodyParams = req.body;
     bodyParams.id = req.params.profileOptId;
@@ -288,6 +305,7 @@ module.exports = {
     createProfileEdu,
     createProfileWork,
     createProfileProject,
+    createProfile,
     updateProfileOpt,
     updateProfileEdu,
     updateProfileWork,
