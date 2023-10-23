@@ -11,7 +11,7 @@ const logger = serverLogger.createLog({file:"server.js"});
 const {checkUserToken} = require("./bl/AuthBl");
 const {sendEmailActiveUrl,sendProfileEmail} = require("./bl/MailBl.js");
 const {getUserProfilePdf} = require("./bl/PdfBl.js");
-const {activeEmail,refreshToken,loginByWechatId, userLogin,getUserSelf} = require("./bl/UserBl.js");
+const {activeEmail,refreshToken,loginByWechatId, userLogin,getUserSelf, updateUserInfo} = require("./bl/UserBl.js");
 const {queryFeedback,createFeedback} = require("./bl/FeedbackBl.js");
 const {queryJobTypeSub, queryProvidence, queryCity, queryArea, queryBaseJob, queryBaseJobType, queryBaseJobTypeSub} = require("./bl/BaseBl.js");
 const profileBl = require("./bl/ProfileBl.js");
@@ -52,6 +52,7 @@ const createServer = () => {
     app.post('/api/private/feedback',createFeedback)
 
     app.get('/api/private/user',checkUserToken,getUserSelf)
+    app.put('/api/private/user',checkUserToken,updateUserInfo)
 
     app.get('/api/private/profile',checkUserToken,profileBl.queryUserProfile)
     app.post('/api/private/profile',checkUserToken,profileBl.createProfile)
