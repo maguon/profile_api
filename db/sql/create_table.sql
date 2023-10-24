@@ -249,7 +249,7 @@ CREATE TABLE public.user_profile (
     "profile_count" int2 NOT NULL DEFAULT 0,
     "work_count" int2 NOT NULL DEFAULT 0,
     "remark" varchar(200) NULL,
-    "tags" text DEFAULT NULL, 
+    "tags" text[] DEFAULT NULL, 
     "search_text" tsvector DEFAULT NULL,
     CONSTRAINT user_profile_pk PRIMARY KEY (id)
 );

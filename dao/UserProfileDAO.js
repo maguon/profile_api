@@ -210,7 +210,7 @@ class UserProfileDAO {
             columnArray.push('date_id');
         }
         if(params.cert){           
-            paramObj.cert = params.cert;
+            paramObj.cert = params.cert == "{}"? null:params.cert;
             columnArray.push('cert');
         }
         console.log(columnArray)
