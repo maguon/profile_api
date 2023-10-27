@@ -135,15 +135,15 @@ const getUserSelf = async(req,res,next) => {
     try{
         const queryRes = await userInfoDAO.queryUserInfoBase({id:userAuth.userId});
         if(queryRes != null){
-            logger.info('queryProfileEdu success')
+            logger.info('getUserSelf success')
             queryRes.password = ""
             resUtil.successRes(res,queryRes,'')
         }else{
-            logger.info('queryProfileEdu failed')
+            logger.info('getUserSelf failed')
             resUtil.failedRes(res,{},"query failed")
         }
     }catch(e){
-        logger.error('queryProfileEdu '+ e.stack)
+        logger.error('getUserSelf '+ e.stack)
         return next(new createError.InternalServerError());
     }
 }

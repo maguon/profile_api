@@ -19,7 +19,8 @@ const checkUserToken = (req,res,next) => {
             }
             try{
                 userInfo = eval("(" + res + ")");
-                
+                console.log(res)
+                console.log(userInfo)
                 req.params[sysConst.REQUEST_AUTH_NAME] = userInfo
                 return next();
             }catch {
