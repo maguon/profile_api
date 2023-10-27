@@ -133,7 +133,7 @@ const refreshToken = async(req,res,next) => {
 const getUserSelf = async(req,res,next) => {
     const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
     try{
-        const queryRes = await userInfoDAO.queryUserInfoBase({userId:userAuth.userId});
+        const queryRes = await userInfoDAO.queryUserInfoBase({id:userAuth.userId});
         if(queryRes != null){
             logger.info('queryProfileEdu success')
             queryRes.password = ""
