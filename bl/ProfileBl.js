@@ -2,6 +2,7 @@ const createError = require('http-errors')
 const moment = require('moment')
 
 const config = require("../config")
+const sysConst = require("../util/SysConst")
 const userProfileDAO = require("../dao/UserProfileDAO.js")
 const resUtil = require('../util/ResUtil.js');
 const serverLogger = require('../util/ServerLogger.js');
