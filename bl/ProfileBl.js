@@ -10,6 +10,8 @@ const logger = serverLogger.createLog({file:"ProfileBl.js"});
 
 const queryProfileOpt = async(req,res,next) => {
     const queryParams = req.query;
+    const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    queryParams.userId = userAuth.userId
     try{
         const queryRes = await userProfileDAO.queryUserProfileOpt(queryParams);
         if(queryRes != null){
@@ -27,6 +29,9 @@ const queryProfileOpt = async(req,res,next) => {
 
 const queryProfileEdu = async(req,res,next) => {
     const queryParams = req.query;
+    const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    queryParams.userId = userAuth.userId
+
     try{
         const queryRes = await userProfileDAO.queryUserProfileEdu(queryParams);
         if(queryRes != null){
@@ -45,6 +50,8 @@ const queryProfileEdu = async(req,res,next) => {
 
 const queryProfileWork = async(req,res,next) => {
     const queryParams = req.query;
+    const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    queryParams.userId = userAuth.userId
     try{
         const queryRes = await userProfileDAO.queryUserProfileWork(queryParams);
         if(queryRes != null){
@@ -62,6 +69,8 @@ const queryProfileWork = async(req,res,next) => {
 
 const queryProfileProject = async(req,res,next) => {
     const queryParams = req.query;
+    const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    queryParams.userId = userAuth.userId
     try{
         const queryRes = await userProfileDAO.queryUserProfileProject(queryParams);
         if(queryRes != null){
@@ -80,6 +89,8 @@ const queryProfileProject = async(req,res,next) => {
 
 const queryUserProfile = async(req,res,next) => {
     const queryParams = req.query;
+    const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    queryParams.userId = userAuth.userId
     try{
         const queryRes = await userProfileDAO.queryUserProfileBase(queryParams);
         if(queryRes != null){
@@ -99,6 +110,8 @@ const queryUserProfile = async(req,res,next) => {
 
 const createProfileOpt = async(req,res,next) => {
     const bodyParams = req.body;
+    const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    bodyParams.userId = userAuth.userId
     try{
         const createRes = await userProfileDAO.createUserProfileOpt(bodyParams);
         if(createRes != null){
@@ -116,6 +129,8 @@ const createProfileOpt = async(req,res,next) => {
 
 const createProfileEdu = async(req,res,next) => {
     const bodyParams = req.body;
+    const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    bodyParams.userId = userAuth.userId
     try{
         const createRes = await userProfileDAO.createUserProfileEdu(bodyParams);
         if(createRes != null){
@@ -134,6 +149,8 @@ const createProfileEdu = async(req,res,next) => {
 
 const createProfileWork = async(req,res,next) => {
     const bodyParams = req.body;
+    const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    bodyParams.userId = userAuth.userId
     try{
         const createRes = await userProfileDAO.createUserProfileWork(bodyParams);
         if(createRes != null){
@@ -152,6 +169,8 @@ const createProfileWork = async(req,res,next) => {
 
 const createProfileProject = async(req,res,next) => {
     const bodyParams = req.body;
+    const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    bodyParams.userId = userAuth.userId
     try{
         const createRes = await userProfileDAO.createUserProfileProject(bodyParams);
         if(createRes != null){
@@ -169,6 +188,8 @@ const createProfileProject = async(req,res,next) => {
 
 const createProfile = async(req,res,next) => {
     const bodyParams = req.body;
+    const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    bodyParams.userId = userAuth.userId
     bodyParams.dateId = moment(new Date()).format('YYYYMMDD')
     try{
         const createRes = await userProfileDAO.createUserProfile(bodyParams);
@@ -187,6 +208,8 @@ const createProfile = async(req,res,next) => {
 
 const updateProfileOpt = async(req,res,next) => {
     const bodyParams = req.body;
+    const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    bodyParams.userId = userAuth.userId
     bodyParams.id = req.params.profileOptId;
     bodyParams.dateId = moment(new Date()).format('YYYYMMDD')
     try{
@@ -208,10 +231,9 @@ const updateProfileOpt = async(req,res,next) => {
 const updateProfileEdu = async(req,res,next) => {
     const bodyParams = req.body;
     bodyParams.id = req.params.profileEduId;
-    /* 
-    userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
-    bodyParams.userId = userAuth.id
-     */
+    const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    bodyParams.userId = userAuth.userId
+    
     try{
         const updateRes = await userProfileDAO.updateUserProfileEdu(bodyParams);
         if(updateRes != null){
@@ -231,10 +253,9 @@ const updateProfileEdu = async(req,res,next) => {
 const updateProfileWork = async(req,res,next) => {
     const bodyParams = req.body;
     bodyParams.id = req.params.profileWorkId;
-    /* 
-    userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
-    bodyParams.userId = userAuth.id
-     */
+    const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    bodyParams.userId = userAuth.userId
+
     try{
         const updateRes = await userProfileDAO.updateUserProfileWork(bodyParams);
         if(updateRes != null){
@@ -254,10 +275,9 @@ const updateProfileWork = async(req,res,next) => {
 const updateProfileProject = async(req,res,next) => {
     const bodyParams = req.body;
     bodyParams.id = req.params.profileProjectId;
-    /* 
-    userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
-    bodyParams.userId = userAuth.id
-     */
+    const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    bodyParams.userId = userAuth.userId
+
     try{
         const updateRes = await userProfileDAO.updateUserProfileProject(bodyParams);
         if(updateRes != null){
@@ -277,10 +297,9 @@ const updateProfileProject = async(req,res,next) => {
 const updateProfile = async(req,res,next) => {
     const bodyParams = req.body;
     bodyParams.id = req.params.profileId;
-    /* 
-    userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
-    bodyParams.userId = userAuth.id
-     */
+    const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
+    bodyParams.userId = userAuth.userId
+
     try{
         const updateRes = await userProfileDAO.updateUserProfile(bodyParams);
         if(updateRes != null){

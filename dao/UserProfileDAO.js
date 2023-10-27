@@ -288,14 +288,7 @@ class UserProfileDAO {
     static async updateUserProfileOpt (params) {
         let paramObj = {};
         let columnArray = []
-        if(params.userId){
-            paramObj.user_id = params.userId;
-            columnArray.push('user_id');
-        }
-        if(params.profileId){            
-            paramObj.profile_id = params.profileId;
-            columnArray.push('profile_id');
-        }
+        
         if(params.status){
             paramObj.status = params.status;
             columnArray.push('status');
@@ -482,14 +475,7 @@ class UserProfileDAO {
 
         let paramObj = {};
         let columnArray = []
-        if(params.userId){
-            paramObj.user_id = params.userId;
-            columnArray.push('user_id');
-        }
-        if(params.profileId){            
-            paramObj.profile_id = params.profileId;
-            columnArray.push('profile_id');
-        }
+        
         if(params.status){
             paramObj.status = params.status;
             columnArray.push('status');
@@ -648,10 +634,7 @@ class UserProfileDAO {
 
         let paramObj = {};
         let columnArray = []
-        if(params.profileId){            
-            paramObj.profile_id = params.profileId;
-            columnArray.push('profile_id');
-        }
+        
         if(params.status){
             paramObj.status = params.status;
             columnArray.push('status');
@@ -765,14 +748,7 @@ class UserProfileDAO {
     static async updateUserProfileProject (params) {
         let paramObj = {};
         let columnArray = []
-        if(params.userId){
-            paramObj.user_id = params.userId;
-            columnArray.push('user_id');
-        }
-        if(params.profileId){            
-            paramObj.profile_id = params.profileId;
-            columnArray.push('profile_id');
-        }
+        
         if(params.status){
             paramObj.status = params.status;
             columnArray.push('status');
