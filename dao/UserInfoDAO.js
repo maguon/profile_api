@@ -116,7 +116,7 @@ class UserInfoDAO {
             paramObj.status = params.status;
             columnArray.push('status');
         }
-        if(params.gender){           
+        if(params.gender !=null){           
             paramObj.gender = params.gender;
             columnArray.push('gender');
         }
