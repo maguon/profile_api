@@ -13,7 +13,7 @@ const {sendEmailActiveUrl,sendProfileEmail} = require("./bl/MailBl.js");
 const {getUserProfilePdf} = require("./bl/PdfBl.js");
 const {activeEmail,refreshToken,loginByWechatId, userLogin,getUserSelf, updateUserInfo} = require("./bl/UserBl.js");
 const {queryFeedback,createFeedback} = require("./bl/FeedbackBl.js");
-const {queryJobTypeSub, queryProvidence, queryCity, queryArea, queryBaseJob, queryBaseJobType, queryBaseJobTypeSub} = require("./bl/BaseBl.js");
+const {queryJobTypeSub, queryProvidence, queryCity, queryArea, queryBaseJob, queryBaseJobType, queryBaseJobTypeSub, getPrivacy} = require("./bl/BaseBl.js");
 const profileBl = require("./bl/ProfileBl.js");
 const {uploadImage} = require("./bl/ImageBl.js");
 const {createProfileTpl,updateProfileTpl,queryProfileTpl} = require("./bl/ProfileTplBl.js");
@@ -27,7 +27,7 @@ const createServer = () => {
     app.all("*",(req, res, next) =>{
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "*");
-        res.header("Access-Control-Allow-Credentials", "false");
+        res.header("Access-Control-Allow-Credentials", "true");
         res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");    
         
         next();
@@ -94,6 +94,7 @@ const createServer = () => {
     app.get('/api/public/providence',queryProvidence) 
     app.get('/api/public/city',queryCity) 
     app.get('/api/public/area',queryArea) 
+    app.get('/api/public/privacy',getPrivacy)
     
     app.get('/',(req,res,next) => {
         return next( createError.NotFound())

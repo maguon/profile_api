@@ -130,6 +130,20 @@ const queryArea = async(req,res,next) => {
     
 }
 
+const getPrivacy = (req,res,next) => {
+    const privacyString = ` 
+    # h1 Heading 
+    ## h2 Heading
+    ### h3 Heading
+    #### h4 Heading
+    ##### h5 Heading
+    ###### h6 Heading
+  `
+    resUtil.successRes(res,privacyString,'')
+    return next();
+}
+
 module.exports ={
-    queryJobTypeSub ,queryBaseJob, queryBaseJobType, queryBaseJobTypeSub,  queryProvidence, queryCity ,queryArea
+    queryJobTypeSub ,queryBaseJob, queryBaseJobType, queryBaseJobTypeSub, 
+     queryProvidence, queryCity ,queryArea ,getPrivacy
 }
