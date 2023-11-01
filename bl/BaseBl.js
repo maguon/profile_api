@@ -132,12 +132,7 @@ const queryArea = async(req,res,next) => {
 
 const getPrivacy = (req,res,next) => {
     const privacyString = ` 
-    # h1 Heading 
-    ## h2 Heading
-    ### h3 Heading
-    #### h4 Heading
-    ##### h5 Heading
-    ###### h6 Heading
+    # h1 Heading
   `
     resUtil.successRes(res,privacyString,'')
     return next();

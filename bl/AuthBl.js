@@ -8,7 +8,7 @@ const logger = serverLogger.createLog({file:"AuthBl.js"});
 
 const checkUserToken = (req,res,next) => {
     const accessToken = req.headers[sysConst.HEADER_AUTH_TOKEN];
-    if(accessToken == undefined){
+    if(accessToken == undefined || accessToken == ""){
         logger.warn("auth failed")
         return next(new createError.Unauthorized());
     }else{
