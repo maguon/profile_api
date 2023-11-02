@@ -30,7 +30,7 @@ const getUserIdByCode = async(req,res,next) =>{
             const updateRes = await userInfoDAO.updateUserInfo({id:queryRes[0].id,loginAt:new Date().toISOString(),loginDateId : moment(new Date()).format('YYYYMMDD')})
             const newToken = jwtUtil.getUserToken(queryRes[0].id,wechatResultObj.openid)
             wechatResultObj.authToken = newToken
-            wechatResultObj.id = queryRes[0].id
+            wechatResultObj.userId = queryRes[0].id
             redis.setStringVal({key:sysConst.USER_TOKEN_PRE+wechatResultObj.authToken,value:JSON.stringify(wechatResultObj),expired:jwtUtil.jwtExpired*30},(err,res)=>{
                 if(err){
                     logger.error(' userLogin ' + err.stack);
@@ -40,7 +40,7 @@ const getUserIdByCode = async(req,res,next) =>{
             const insertRes = await userInfoDAO.createUserInfo({wechatId:wechatResultObj.openid,status:1})
             const newToken = jwtUtil.getUserToken(insertRes.id,wechatResultObj.openid)
             wechatResultObj.authToken = newToken
-            wechatResultObj.id = insertRes.id
+            wechatResultObj.userId = insertRes.id
             redis.setStringVal({key:sysConst.USER_TOKEN_PRE+wechatResultObj.authToken,value:JSON.stringify(wechatResultObj),expired:jwtUtil.jwtExpired*30},(err,res)=>{
                 if(err){
                     logger.error(' userLogin ' + err.stack);
