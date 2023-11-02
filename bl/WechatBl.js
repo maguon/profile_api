@@ -5,6 +5,7 @@ const httpUtil = require('../util/HttpUtil.js');
 const resUtil = require('../util/ResUtil.js');
 const jwtUtil = require("../util/JwtUtil")
 const sysConst = require('../util/SysConst.js');
+const redis = require("../dao/RedisDAO")
 const config = require ('../config')
 const userInfoDAO = require("../dao/UserInfoDAO")
 
@@ -30,11 +31,21 @@ const getUserIdByCode = async(req,res,next) =>{
             const newToken = jwtUtil.getUserToken(queryRes[0].id,wechatResultObj.openid)
             wechatResultObj.authToken = newToken
             wechatResultObj.id = queryRes[0].id
+            redis.setStringVal({key:sysConst.USER_TOKEN_PRE+wechatResultObj.authToken,value:JSON.stringify(wechatResultObj),expired:jwtUtil.jwtExpired*30},(err,res)=>{
+                if(err){
+                    logger.error(' userLogin ' + err.stack);
+                }
+            })
         }else{
             const insertRes = await userInfoDAO.createUserInfo({wechatId:wechatResultObj.openid,status:1})
             const newToken = jwtUtil.getUserToken(insertRes.id,wechatResultObj.openid)
             wechatResultObj.authToken = newToken
             wechatResultObj.id = insertRes.id
+            redis.setStringVal({key:sysConst.USER_TOKEN_PRE+wechatResultObj.authToken,value:JSON.stringify(wechatResultObj),expired:jwtUtil.jwtExpired*30},(err,res)=>{
+                if(err){
+                    logger.error(' userLogin ' + err.stack);
+                }
+            })
         }
         resUtil.successRes(res,wechatResultObj,'')
     }else{
