@@ -133,7 +133,7 @@ const refreshToken = async(req,res,next) => {
 const getUserSelf = async(req,res,next) => {
     const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
     try{
-        const queryRes = await userInfoDAO.queryUserInfoBase({id:userAuth.userId});
+        const queryRes = await userInfoDAO.queryUserInfoBase({id:userAuth.id});
         if(queryRes != null){
             logger.info('getUserSelf success')
             queryRes.password = ""
@@ -154,7 +154,7 @@ const updateUserInfo = async(req,res,next) => {
     const bodyParams = req.body;
     
     const userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
-    bodyParams.id = userAuth.userId
+    bodyParams.id = userAuth.id
     
     try{
         const updateRes = await userInfoDAO.updateUserInfo(bodyParams);
