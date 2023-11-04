@@ -12,11 +12,11 @@ const getUserProfilePdf = async (req,res,next) => {
     console.log(new Date().toLocaleString())
     userAuth = req.params[sysConst.REQUEST_AUTH_NAME]
     logger.info("getUserProfilePdf",{"message":req.params[sysConst.REQUEST_AUTH_NAME].ID})
-    const profileRes = await UserProfileDAO.queryUserProfile({userId:userAuth.ID});
-    const optRes = await UserProfileDAO.queryUserProfileOpt({userId:userAuth.ID});
-    const eduRes = await UserProfileDAO.queryUserProfileEdu({userId:userAuth.ID});
-    const workRes = await UserProfileDAO.queryUserProfileWork({userId:userAuth.ID});
-    const projectRes = await UserProfileDAO.queryUserProfileProject({userId:userAuth.ID});
+    const profileRes = await UserProfileDAO.queryUserProfile({userId:userAuth.userId});
+    const optRes = await UserProfileDAO.queryUserProfileOpt({userId:userAuth.userId});
+    const eduRes = await UserProfileDAO.queryUserProfileEdu({userId:userAuth.userId});
+    const workRes = await UserProfileDAO.queryUserProfileWork({userId:userAuth.userId});
+    const projectRes = await UserProfileDAO.queryUserProfileProject({userId:userAuth.userId});
     
     const renderObj = {
         profile:baseUtil.getProfileRender(profileRes[0]),
