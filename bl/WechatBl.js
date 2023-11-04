@@ -31,6 +31,7 @@ const getUserIdByCode = async(req,res,next) =>{
             const newToken = jwtUtil.getUserToken(queryRes[0].id,wechatResultObj.openid)
             wechatResultObj.authToken = newToken
             wechatResultObj.userId = queryRes[0].id
+            wechatResultObj.userInfo = queryRes[0]
             redis.setStringVal({key:sysConst.USER_TOKEN_PRE+wechatResultObj.authToken,value:JSON.stringify(wechatResultObj),expired:jwtUtil.jwtExpired*30},(err,res)=>{
                 if(err){
                     logger.error(' userLogin ' + err.stack);
@@ -41,6 +42,7 @@ const getUserIdByCode = async(req,res,next) =>{
             const newToken = jwtUtil.getUserToken(insertRes.id,wechatResultObj.openid)
             wechatResultObj.authToken = newToken
             wechatResultObj.userId = insertRes.id
+            wechatResultObj.userInfo = insertRes
             redis.setStringVal({key:sysConst.USER_TOKEN_PRE+wechatResultObj.authToken,value:JSON.stringify(wechatResultObj),expired:jwtUtil.jwtExpired*30},(err,res)=>{
                 if(err){
                     logger.error(' userLogin ' + err.stack);
