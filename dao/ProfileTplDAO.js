@@ -26,7 +26,7 @@ class ProfileTplDAO {
     }
 
     static async queryProfileTpl (params) {
-        let query = `select * from user_profile_tpl `;
+        let query = `select * from user_profile_tpl where id is not null `;
         let filterObj = {};
         if(params.id){
             query += " and id = ${id} ";
