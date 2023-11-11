@@ -4,8 +4,9 @@ const pdfUtil = require('./PdfUtil')
 /* ejs.locals.monthFormat = (dateMonth) => {
     return moment(dateMonth).format('YYYY-MM');
 } */
-const getUserProfileTpl = (params,callback) => {
-    ejs.renderFile(path.join(__dirname, '/template/index.html'), {...params,pdfUtil} , {}, (err, str)=>{
+const getUserProfileTpl = (tplPath,params,callback) => {
+    
+    ejs.renderFile(path.join(__dirname, tplPath||'/template/index.html'), {...params,pdfUtil} , {}, (err, str)=>{
         callback(err,str)
     });
 }

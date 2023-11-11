@@ -88,6 +88,7 @@ const createServer = () => {
     app.get('/api/public/wechat/:code/openid',getUserIdByCode);
     // public api
     app.get('/api/public/baseJobTypeSub',queryJobTypeSub) 
+    app.get('/api/public/profileTpl',queryProfileTpl)
     app.get('/api/public/job',queryBaseJob) 
     app.get('/api/public/jobType',queryBaseJobType) 
     app.get('/api/public/jobTypeSub',queryBaseJobTypeSub) 
