@@ -33,7 +33,7 @@ class CmsDAO {
     }   
     
     static async queryCmsContent(params) {
-        let query = `select * from cms_content`;
+        let query = `select * from cms_content where id is not null `;
         let filterObj = {};
         if(params.id){
             query += " and id = ${id} ";
