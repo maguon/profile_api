@@ -2,6 +2,7 @@ const createError = require('http-errors')
 
 const config = require("../config")
 const baseDAO = require("../dao/BaseDAO")
+const cmsDAO = require("../dao/CmsDAO")
 const resUtil = require('../util/ResUtil.js');
 const serverLogger = require('../util/ServerLogger.js');
 const logger = serverLogger.createLog({file:"BaseBl.js"});
@@ -130,12 +131,22 @@ const queryArea = async(req,res,next) => {
     
 }
 
-const getPrivacy = (req,res,next) => {
-    const privacyString = ` 
-    # h1 Heading
-  `
-    resUtil.successRes(res,privacyString,'')
-    return next();
+const getPrivacy = async (req,res,next) => {
+    const queryParams = req.query;
+    queryParams.title ="隐私政策"
+    try{
+        const cmsRes = await cmsDAO.queryCms(queryParams);
+        if(cmsRes != null){
+            logger.info('getPrivacy success')
+            resUtil.successRes(res,cmsRes,'')
+        }else{
+            logger.info('getPrivacy failed')
+            resUtil.successRes(res,{},msg)
+        }
+    }catch(e){
+        logger.error('getPrivacy '+ e.stack)
+        return next(new createError.InternalServerError());
+    }
 }
 
 module.exports ={
