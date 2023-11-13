@@ -135,7 +135,7 @@ const getPrivacy = async (req,res,next) => {
     const queryParams = req.query;
     queryParams.title ="隐私政策"
     try{
-        const cmsRes = await cmsDAO.queryCms(queryParams);
+        const cmsRes = await cmsDAO.queryCmsContent(queryParams);
         if(cmsRes != null){
             logger.info('getPrivacy success')
             resUtil.successRes(res,cmsRes,'')
