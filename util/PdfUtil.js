@@ -11,7 +11,7 @@ const formatYearMonth = (monthDate) => {
 const formatEduTitle = (eduObj) => {
     let eduStr = eduObj.edu_name;
     if (eduObj.edu_level >3){
-        eduStr +=  eduObj.edu_type == 1 ? " ｜ 统招":" ｜ 非统招"
+        eduStr +=  eduObj.edu_type == 1 ? " ｜ 非统招":" ｜ 统招"
         if(eduObj.major){
             eduStr += ' ｜ ' + eduObj.major
         }
