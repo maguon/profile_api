@@ -68,7 +68,7 @@ const createServer = () => {
 
     app.post('/api/private/profileWork',checkUserToken,profileBl.createProfileWork)
     app.get('/api/private/profileWork',checkUserToken,profileBl.queryProfileWork)
-    app.put('/api/private/profileWork/:profileWorkId',profileBl.updateProfileWork)
+    app.put('/api/private/profileWork/:profileWorkId',checkUserToken,profileBl.updateProfileWork)
 
     app.post('/api/private/profileProject',checkUserToken,profileBl.createProfileProject)
     app.get('/api/private/profileProject',checkUserToken,profileBl.queryProfileProject)
