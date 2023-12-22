@@ -154,8 +154,8 @@ class UserProfileDAO {
             columnArray.push('edu_level');
         }
         if(params.excellent){           
-            paramObj.edu_level = params.eduLevel;
-            columnArray.push('edu_level');
+            paramObj.excellent = params.excellent;
+            columnArray.push('excellent');
         }
         if(params.lastTitle){           
             paramObj.last_title = params.lastTitle;
