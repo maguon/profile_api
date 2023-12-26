@@ -7,22 +7,22 @@
             <div style="-webkit-box-flex: 1;background-color: #587cf7;width: 100%;padding: 30px 40px;">
                 <div style="display: -webkit-box;    -webkit-box-orient: horizontal;-webkit-box-pack: justify; padding: 0 40px;">
                     <div style="display: -webkit-box;-webkit-box-flex: 5; -webkit-box-orient: vertical;">
-                        <div style="font-size: 1.8rem;color: #fff;font-weight: 900;margin:10px 0;">用户姓名</div>
+                        <div style="font-size: 1.8rem;color: #fff;font-weight: 900;margin:10px 0;"><%= profile.name %></div>
                         <div style="display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: justify;font-size:1.5rem;color:#fff">
-                            <div style="-webkit-box-flex: 1;width: 1%;">性别: 男</div>
-                            <div style="-webkit-box-flex: 2;width: 1%;">生日: 1999-09</div>
+                            <div style="-webkit-box-flex: 1;width: 1%;">性别: <%= profile.gender%></div>
+                            <div style="-webkit-box-flex: 2;width: 1%;">生日: <%=  pdfUtil.formatYearMonth(profile.birth)  %></div>
                         </div>
                         <div style="display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: justify;font-size:1.5rem;color:#fff">
-                            <div style="-webkit-box-flex: 1;width: 1%;">城市: 北京</div>
+                            <div style="-webkit-box-flex: 1;width: 1%;">城市: <%= opt[0].city_name %></div>
                             <div style="-webkit-box-flex: 2;width: 1%;">学历: 本科</div>
                         </div>
                         <div style="display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: justify;font-size:1.5rem;color:#fff">
-                            <div style="-webkit-box-flex: 1;width: 1%;">电话: 13322221111</div>
-                            <div style="-webkit-box-flex: 2;width: 1%;">邮箱: 23123123123@qq.com</div>
+                            <div style="-webkit-box-flex: 1;width: 1%;">电话: <%= profile.phone %></div>
+                            <div style="-webkit-box-flex: 2;width: 1%;">邮箱: <%= profile.email %></div>
                         </div>
                     </div>
                     <div style="display: -webkit-box;-webkit-box-flex: 1;-webkit-box-orient: vertical;-webkit-box-pack: center;-webkit-box-align: center; ">
-                        <img style="object-fit: cover;" height="120" width="120" src="https://www.holidify.com/images/bgImages/JAIPUR.jpg"/>
+                        <img style="object-fit: cover;" height="120" width="120" src=<%= pdfUtil.getImageFullUrl(profile.avatar) %> />
                     </div>
                 </div>
             </div>
@@ -31,83 +31,36 @@
                     <div style="background-color: #587cf7;padding: 1rem 1rem;text-align: center;font-size: 1.5rem;border-radius: 2.4rem;color:#fff">
                         <span>学习经历</span>
                     </div>
-                    <div>
-                        <div style="display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: justify;color: #587cf7;margin: 1rem;font-weight: 700;font-size: 1.4rem;">
-                            <div style="-webkit-box-flex: 1;">上海财经大学(硕士)</div>
-                            <div style="-webkit-box-flex: 1;text-align: center;">计算机科学与技术</div>
-                            <div style="-webkit-box-flex: 1;text-align: end;">2020.06 - 2023.08</div>
+                    <% for (let index in edu) { %>
+                        <div>
+                            <div style="display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: justify;color: #587cf7;margin: 1rem;font-weight: 700;font-size: 1.4rem;">
+                                <div style="-webkit-box-flex: 1;"><%= edu[index].college %></div>
+                                <div style="-webkit-box-flex: 1;text-align: center;"><%= edu[index].major %></div>
+                                <div style="-webkit-box-flex: 1;text-align: end;"><%= pdfUtil.formatYearMonth(edu[index].edu_start) %> - <%= pdfUtil.formatYearMonth(edu[index].edu_end) %></div>
+                            </div>
+                            <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;margin-top: -1rem; color: #666;font-size: 1.3rem;" align="left">
+                                <%= edu[index].remark %>  
+                            </div>
                         </div>
-                        <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;margin-top: -1rem; color: #666;font-size: 1.3rem;" align="left">
-                            1、对项目群交付结果及验收进度负责。 
-                            2、完成项目群的日常的任务交付、周报，对已经确定的项目计划进行跟踪。 
-                            3、能够主动、及时识别进度、质量、客户满意度等风险并上报。 
-                        </div>
-                    </div>
-                    <div>
-                        <div style="display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: justify;color: #587cf7;margin: 1rem;font-weight: 700;font-size: 1.4rem;">   
-                            <div style="-webkit-box-flex: 1;">上海对外经贸大学(本科)</div>
-                            <div style="-webkit-box-flex: 1;text-align: center;">计算机科学与技术</div>
-                            <div style="-webkit-box-flex: 1;text-align: end;">2016.06 - 2020.08</div>
-                        </div>
-                        <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;margin-top: -1rem; color: #666;font-size: 1.3rem;" align="left">
-                            1、对项目群交付结果及验收进度负责。 
-                            2、完成项目群的日常的任务交付、周报，对已经确定的项目计划进行跟踪。 
-                            3、能够主动、及时识别进度、质量、客户满意度等风险并上报。 
-                        </div>
-                    </div>
+                    <% } %>
+                    
                 </div>
                 <div style="margin: 0 4rem;">
                     <div style="background-color: #587cf7;padding: 1rem 1rem;text-align: center;font-size: 1.3rem;border-radius: 2.4rem;color:#fff">
                         <span>工作经历</span>
                     </div>
-                    <div>
-                        <div style="display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: justify;color: #587cf7;margin: 1rem;font-weight: 700;font-size: 1.4rem;">
-                            <div style="-webkit-box-flex: 1;">人事经理</div>
-                            <div style="-webkit-box-flex: 1;text-align: center;">辽宁业聘科技有限公司</div>
-                            <div style="-webkit-box-flex: 1;text-align: end;">2016.06 - 2020.08</div>
+                    <% for (let index in work) { %>
+                        <div>
+                            <div style="display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: justify;color: #587cf7;margin: 1rem;font-weight: 700;font-size: 1.4rem;">
+                                <div style="-webkit-box-flex: 1;"><%= work[index].title %></div>
+                                <div style="-webkit-box-flex: 1;text-align: center;"><%= work[index].en_name %></div>
+                                <div style="-webkit-box-flex: 1;text-align: end;"><%= pdfUtil.formatYearMonth(work[index].work_start) %> - <%= pdfUtil.formatYearMonth(work[index].work_end) %></div>
+                            </div>
+                            <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;margin-top: -1rem; color: #666;font-size: 1.3rem;" align="left">
+                                <%= work[index].remark %>
+                            </div>
                         </div>
-                        <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;margin-top: -1rem; color: #666;font-size: 1.3rem;" align="left">
-                            1、对项目群交付结果及验收进度负责。 
-                            2、完成项目群的日常的任务交付、周报，对已经确定的项目计划进行跟踪。 
-                            3、能够主动、及时识别进度、质量、客户满意度等风险并上报。 
-                        </div>
-                    </div>
-                    <div>
-                        <div style="display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: justify;color: #587cf7;margin: 1rem;font-weight: 700;font-size: 1.4rem;">
-                            <div style="-webkit-box-flex: 1;">人事主管</div>
-                            <div style="-webkit-box-flex: 1;text-align: center;">国宝人才市场有限公司</div>
-                            <div style="-webkit-box-flex: 1;text-align: end;">2016.06 - 2020.08</div>
-                        </div>
-                        <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;margin-top: -1rem; color: #666;font-size: 1.3rem;" align="left">
-                            1、对项目群交付结果及验收进度负责。 
-                            2、完成项目群的日常的任务交付、周报，对已经确定的项目计划进行跟踪。 
-                            3、能够主动、及时识别进度、质量、客户满意度等风险并上报。 
-                        </div>
-                    </div>
-                    <div>
-                        <div style="display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: justify;color: #587cf7;margin: 1rem;font-weight: 700;font-size: 1.4rem;">
-                            <div style="-webkit-box-flex: 1;">人事主管</div>
-                            <div style="-webkit-box-flex: 1;text-align: center;">国宝人才市场有限公司</div>
-                            <div style="-webkit-box-flex: 1;text-align: end;">2016.06 - 2020.08</div>
-                        </div>
-                        <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;margin-top: -1rem; color: #666;font-size: 1.3rem;" align="left">
-                            1、对项目群交付结果及验收进度负责。 
-                            2、完成项目群的日常的任务交付、周报，对已经确定的项目计划进行跟踪。 
-                            3、能够主动、及时识别进度、质量、客户满意度等风险并上报。 
-                        </div>
-                    </div>
-                    <div>
-                        <div style="display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: justify;color: #587cf7;margin: 1rem;font-weight: 700;font-size: 1.4rem;">
-                            <div style="-webkit-box-flex: 1;">人事主管</div>
-                            <div style="-webkit-box-flex: 1;text-align: center;">国宝人才市场有限公司</div>
-                            <div style="-webkit-box-flex: 1;text-align: end;">2016.06 - 2020.08</div>
-                        </div>
-                        <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;margin-top: -1rem; color: #666;font-size: 1.3rem;" align="left">
-                            1、对项目群交付结果及验收进度负责。 
-                            2、完成项目群的日常的任务交付、周报，对已经确定的项目计划进行跟踪。 
-                            3、能够主动、及时识别进度、质量、客户满意度等风险并上报。 
-                        </div>
-                    </div>
+                    <% } %>
                 </div>
                 
                 
@@ -118,9 +71,7 @@
                 <span>自我评价</span>
             </div>
             <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;margin-top: -1rem; color: #666;font-size: 1.3rem;" align="left">
-                1、对项目群交付结果及验收进度负责。 
-                2、完成项目群的日常的任务交付、周报，对已经确定的项目计划进行跟踪。 
-                3、能够主动、及时识别进度、质量、客户满意度等风险并上报。 
+                <%= profile.excellent %>
             </div>
         </div>
         <div style="margin: 1rem 4rem;">

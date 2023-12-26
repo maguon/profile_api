@@ -7,12 +7,12 @@
             <div style="-webkit-box-flex: 1;background-color: #37c2bc;width: 100%;padding: 30px 40px;">
                 <div style="display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: justify; padding: 0 40px;">
                     <div style="-webkit-box-flex: 6;">
-                        <p style="font-size: 28px;color: #fff;font-weight: 900;margin:10px 0 ;">用户姓名</p>
-                        <p style="font-size: 20px;color: #fff;margin:0.4rem 0 ;">男 | 生日:2001-08 ｜ 北京 | 3年工作经验 ｜ 本科</p>
-                        <p style="font-size: 20px;color: #fff;margin:0;">电话: 13322221111 ｜ 邮箱: 123123123@qq.com</p>
+                        <p style="font-size: 28px;color: #fff;font-weight: 900;margin:10px 0 ;"><%= profile.name %></p>
+                        <p style="font-size: 20px;color: #fff;margin:0.4rem 0 ;"><%= profile.gender%> | 生日:<%=  pdfUtil.formatYearMonth(profile.birth)  %> ｜ <%= opt[0].city_name %> | 3年工作经验 ｜ 本科</p>
+                        <p style="font-size: 20px;color: #fff;margin:0;">电话: <%= profile.phone %> ｜ 邮箱: <%= profile.email %></p>
                     </div>
                     <div style="-webkit-box-flex: 1;display: -webkit-box;-webkit-box-orient: vertical;-webkit-box-pack: center;-webkit-box-align: center; ">
-                        <img style="object-fit: cover;border-radius: 10px;" height="120" width="120" src="https://www.holidify.com/images/bgImages/JAIPUR.jpg"/>
+                        <img style="object-fit: cover;border-radius: 10px;" height="120" width="120" src=<%= pdfUtil.getImageFullUrl(profile.avatar) %>/>
                     </div>
                 </div>
             </div>
@@ -23,11 +23,7 @@
                         个人优势
                     </div>
                     <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;color: #666;" align="left">
-                        1、对项目群交付结果及验收进度负责。 
-                        2、完成项目群的日常的任务交付、周报，对已经确定的项目计划进行跟踪。 
-                        3、能够主动、及时识别进度、质量、客户满意度等风险并上报。 
-                        4、制定项目阶段性目标和项目总体控制计划，能够将总目标分解， 
-                        5、划分出主要工作内容和工作量，确定项目阶段性目标及实现标志。
+                        <%= profile.excellent %>
                     </div>
                 </div>
             </div>
@@ -37,53 +33,20 @@
                     <div style="background-color: #37c2bc;padding: 0.5rem 1rem;font-size: 1.2rem;color:#fff;margin: -2.7rem 0 0 0;width:5rem">
                         工作经历
                     </div>
-                    <div>
-                        <div style="padding:1rem 2rem 0 1rem;display: -webkit-box;-webkit-box-orient: horizontal; -webkit-box-pack: justify; -webkit-box-align: center; ">
-                            <div style="display: -webkit-box;-webkit-box-orient: horizontal;">
-                                <div style="font-size: 1.2rem;">业聘科技</div>
-                                <div style="color: #666;margin-left:3rem; font-size: 1.2rem;">人事经理</div>
+                    <% for (let index in work) { %>
+                        <div>
+                            <div style="padding:1rem 2rem 0 1rem;display: -webkit-box;-webkit-box-orient: horizontal; -webkit-box-pack: justify; -webkit-box-align: center; ">
+                                <div style="display: -webkit-box;-webkit-box-orient: horizontal;">
+                                    <div style="font-size: 1.2rem;"><%= work[index].en_name %></div>
+                                    <div style="color: #666;margin-left:3rem; font-size: 1.2rem;"><%= work[index].title %></div>
+                                </div>
+                                <div style="color:#666"><%= pdfUtil.formatYearMonth(work[index].work_start) %> - <%= pdfUtil.formatYearMonth(work[index].work_end) %></div>
                             </div>
-                            <div style="color:#666">2001.12-2020.02</div>
-                        </div>
-                        <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;color: #666;" align="left">
-                            1、对项目群交付结果及验收进度负责。 
-                            2、完成项目群的日常的任务交付、周报，对已经确定的项目计划进行跟踪。 
-                            3、能够主动、及时识别进度、质量、客户满意度等风险并上报。 
-                            4、制定项目阶段性目标和项目总体控制计划，能够将总目标分解， 
-                            5、划分出主要工作内容和工作量，确定项目阶段性目标及实现标志。
-                        </div>
-                    </div>
-                    <div>
-                        <div style="padding:1rem 2rem 0 1rem;display: -webkit-box;-webkit-box-orient: horizontal; -webkit-box-pack: justify; -webkit-box-align: center; ">
-                            <div style="display: -webkit-box;-webkit-box-orient: horizontal;">
-                                <div style="font-size: 1.2rem;">业聘科技</div>
-                                <div style="color: #666;margin-left:3rem; font-size: 1.2rem;">人事经理</div>
+                            <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;color: #666;" align="left">
+                                <%= work[index].remark %>
                             </div>
-                            <div style="color:#666">2001.12-2020.02</div>
                         </div>
-                        <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;color: #666;" align="left">
-                            1、对项目群交付结果及验收进度负责。 
-                            2、完成项目群的日常的任务交付、周报，对已经确定的项目计划进行跟踪。 
-                            3、能够主动、及时识别进度、质量、客户满意度等风险并上报。 
-                            4、制定项目阶段性目标和项目总体控制计划，能够将总目标分解， 
-                            5、划分出主要工作内容和工作量，确定项目阶段性目标及实现标志。
-                        </div>
-                    </div><div>
-                        <div style="padding:1rem 2rem 0 1rem;display: -webkit-box;-webkit-box-orient: horizontal; -webkit-box-pack: justify; -webkit-box-align: center; ">
-                            <div style="display: -webkit-box;-webkit-box-orient: horizontal;">
-                                <div style="font-size: 1.2rem;">业聘科技</div>
-                                <div style="color: #666;margin-left:3rem; font-size: 1.2rem;">人事经理</div>
-                            </div>
-                            <div style="color:#666">2001.12-2020.02</div>
-                        </div>
-                        <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;color: #666;" align="left">
-                            1、对项目群交付结果及验收进度负责。 
-                            2、完成项目群的日常的任务交付、周报，对已经确定的项目计划进行跟踪。 
-                            3、能够主动、及时识别进度、质量、客户满意度等风险并上报。 
-                            4、制定项目阶段性目标和项目总体控制计划，能够将总目标分解， 
-                            5、划分出主要工作内容和工作量，确定项目阶段性目标及实现标志。
-                        </div>
-                    </div>
+                    <% } %>
                 </div>
             </div>
 
@@ -93,38 +56,20 @@
                     <div style="background-color: #37c2bc;padding: 0.5rem 1rem;font-size: 1.2rem;color:#fff;margin: -2.7rem 0 0 0;width:5rem">
                         项目经历
                     </div>
-                    <div>
-                        <div style="padding:1rem 2rem 0 1rem;display: -webkit-box;-webkit-box-orient: horizontal; -webkit-box-pack: justify; -webkit-box-align: center; ">
-                            <div style="display: -webkit-box;-webkit-box-orient: horizontal;">
-                                <div style="font-size: 1.2rem;">业聘科技</div>
-                                <div style="color: #666;margin-left:3rem; font-size: 1.2rem;">人事经理</div>
+                    <% for (let index in project) { %>
+                        <div>
+                            <div style="padding:1rem 2rem 0 1rem;display: -webkit-box;-webkit-box-orient: horizontal; -webkit-box-pack: justify; -webkit-box-align: center; ">
+                                <div style="display: -webkit-box;-webkit-box-orient: horizontal;">
+                                    <div style="font-size: 1.2rem;"><%= project[index].pro_name %></div>
+                                    <div style="color: #666;margin-left:3rem; font-size: 1.2rem;"><%= project[index].pro_title %></div>
+                                </div>
+                                <div style="color:#666"><%= pdfUtil.formatYearMonth(project[index].pro_start) %> - <%= pdfUtil.formatYearMonth(project[index].pro_end) %></div>
                             </div>
-                            <div style="color:#666">2001.12-2020.02</div>
-                        </div>
-                        <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;color: #666;" align="left">
-                            1、对项目群交付结果及验收进度负责。 
-                            2、完成项目群的日常的任务交付、周报，对已经确定的项目计划进行跟踪。 
-                            3、能够主动、及时识别进度、质量、客户满意度等风险并上报。 
-                            4、制定项目阶段性目标和项目总体控制计划，能够将总目标分解， 
-                            5、划分出主要工作内容和工作量，确定项目阶段性目标及实现标志。
-                        </div>
-                    </div>
-                    <div>
-                        <div style="padding:1rem 2rem 0 1rem;display: -webkit-box;-webkit-box-orient: horizontal; -webkit-box-pack: justify; -webkit-box-align: center; ">
-                            <div style="display: -webkit-box;-webkit-box-orient: horizontal;">
-                                <div style="font-size: 1.2rem;">业聘科技</div>
-                                <div style="color: #666;margin-left:3rem; font-size: 1.2rem;">人事经理</div>
+                            <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;color: #666;" align="left">
+                                <%= project[index].remark %>
                             </div>
-                            <div style="color:#666">2001.12-2020.02</div>
                         </div>
-                        <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;color: #666;" align="left">
-                            1、对项目群交付结果及验收进度负责。 
-                            2、完成项目群的日常的任务交付、周报，对已经确定的项目计划进行跟踪。 
-                            3、能够主动、及时识别进度、质量、客户满意度等风险并上报。 
-                            4、制定项目阶段性目标和项目总体控制计划，能够将总目标分解， 
-                            5、划分出主要工作内容和工作量，确定项目阶段性目标及实现标志。
-                        </div>
-                    </div>
+                    <% } %>
                 </div>
             </div>
             <div style="-webkit-box-flex: 1;display: -webkit-box;-webkit-box-orient: vertical;width: 100% !important;">
@@ -133,23 +78,22 @@
                     <div style="background-color: #37c2bc;padding: 0.5rem 1rem;font-size: 1.2rem;color:#fff;margin: -2.7rem 0 0 0;width:5rem">
                         教育经历
                     </div>
-                    <div>
-                        <div style="padding:1rem 2rem 0 1rem;display: flex;flex-direction: row;justify-content: space-between;align-items: center; ">
-                            <div>
-                                <span style="font-size: 1.2rem;">辽宁大学</span>
-                                <span style="color: #666;padding: 0 2rem;font-size: 1rem;">人力资源</span>
-                                <span style="color: #666;padding: 0 2rem;font-size: 1rem">本科</span>
+                    <% for (let index in edu) { %>
+                        <div>
+                            <div style="padding:1rem 2rem 0 1rem;display: flex;flex-direction: row;justify-content: space-between;align-items: center; ">
+                                <div>
+                                    <span style="font-size: 1.2rem;"><%= edu[index].college %></span>
+                                    <span style="color: #666;padding: 0 2rem;font-size: 1rem;"><%= edu[index].major %></span>
+                                    <span style="color: #666;padding: 0 2rem;font-size: 1rem"><%= pdfUtil.formatEduTitle(edu[index]) %></span>
+                                </div>
+                                <span style="color:#666"><%= pdfUtil.formatYearMonth(edu[index].edu_start) %> - <%= pdfUtil.formatYearMonth(edu[index].edu_end) %></span>
                             </div>
-                            <span style="color:#666">2001.12-2020.02</span>
+                            <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;color: #666;" align="left">
+                                <%= edu[index].remark %>
+                            </div>
                         </div>
-                        <div style="white-space: pre-line;line-height: 1.5;width:100% !important;padding: 0 0 1rem 1rem;color: #666;" align="left">
-                            1、对项目群交付结果及验收进度负责。 
-                            2、完成项目群的日常的任务交付、周报，对已经确定的项目计划进行跟踪。 
-                            3、能够主动、及时识别进度、质量、客户满意度等风险并上报。 
-                            4、制定项目阶段性目标和项目总体控制计划，能够将总目标分解， 
-                            5、划分出主要工作内容和工作量，确定项目阶段性目标及实现标志。
-                        </div>
-                    </div>
+                    <% } %>
+                    
                 </div>
             </div>
             <div style="display: -webkit-box;-webkit-box-orient: vertical; -webkit-box-flex:1;width: 100% !important;">

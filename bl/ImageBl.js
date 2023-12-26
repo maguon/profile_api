@@ -10,7 +10,7 @@ const imagePath = "./uploads/"
 const uploadImage = async(req,res,next) => {
     fs.rename(req.files.file.tempFilePath, imagePath+ req.files.file.name,(err ,s)=>{
         if(err){
-            logger.error("sendProfileEmail" ,{message:err.stack})
+            logger.error("uploadImage success" ,{message:err.stack})
             resUtil.failedRes(res,{},'failed');
         }else{
             logger.info('uploadImage success '+ req.files.file.name)
